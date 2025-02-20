@@ -1,8 +1,12 @@
-function Button({ btnType }) {
+function Button({ btnType, btnDisable }) {
   return (
     <button
       type={btnType}
-      className="btn text-sm font-bold px-5 py-2 rounded-md border-0 bg-[#C1C2F9] text-white"
+      className={`
+      ${btnDisable ? "bg-[#c1c2f9]" : "bg-[#6467f8]"}
+      "btn text-sm font-bold px-5 py-2 rounded-md border-0  text-white"
+      `}
+      disabled={btnDisable}
     >
       Create store
     </button>
