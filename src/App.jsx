@@ -8,7 +8,7 @@ function App() {
           <div>Nav</div>
         </nav>
       </header>
-      <main className="container mx-auto">
+      <main className="container mx-auto ">
         <div>
           <CreateStore />
         </div>
