@@ -4,8 +4,39 @@ import locationIcon from "../assets/icons8-location-32.png";
 import categoryIcon from "../assets/icons8-category-24.png";
 import currencyIcon from "../assets/icons8-currency-32.png";
 import emailIcon from "../assets/icons8-email-50.png";
+import { useState } from "react";
 
 function CreateStoreFields() {
+  const [storeName, setStoreName] = useState("");
+  const [domainName, setDomainName] = useState("");
+  const isValidStoreName = storeName.trim().length >= 3;
+
+  // storeName check
+  const handleStoreName = (event) => {
+    setStoreName(event.target.value);
+  };
+  // DomainName check
+  const suffix = ".expressitbd.com";
+  const handleDomainName = async (event) => {
+    const newDomainName = event.target.value;
+    setDomainName(newDomainName);
+
+    try {
+      const response = await fetch(
+        `https://interview-task-green.vercel.app/task/domains/check/${newDomainName}${suffix}`
+      );
+      if (!response.ok) {
+        console.log("response error:", response.status);
+      } else {
+        const data = await response.json();
+        console.log("API response:", data);
+      }
+    } catch (error) {
+      console.log("Fetch error:", error);
+    }
+    console.log("clicked");
+  };
+
   return (
     <div>
       {/* field-1 */}
@@ -26,11 +57,21 @@ function CreateStoreFields() {
         </div>
         <div className="ml-6 lg:ml-0">
           <input
-            className="border-2 border-gray-300  rounded-lg h-10 w-full px-3 text-sm text-gray-500 "
+            onChange={handleStoreName}
+            className={`
+              ${!isValidStoreName ? "border-red-300" : "border-gray-300"} 
+              ${storeName.length > 0 ? "text-opacity-100" : "text-gray-500"}}
+              border-2 border-gray-300   rounded-lg h-10 w-full px-3 text-sm  `}
             type="text"
             name="name"
+            value={storeName}
             placeholder="How'd you like to call your store?"
           />
+          {!isValidStoreName && storeName.length > 0 && (
+            <p className="text-xs text-red-500 mt-2">
+              Store name must be at least 3 characters long
+            </p>
+          )}
         </div>
       </label>
 
@@ -50,21 +91,24 @@ function CreateStoreFields() {
             </p>
           </div>
         </div>
-        <div className="ml-6 lg:ml-0">
+        <div className="ml-6 lg:ml-0 relative">
           <input
-            className="border-2 border-gray-300  rounded-lg h-10 w-full px-3 text-sm text-gray-500 "
+            onChange={handleDomainName}
+            className={`
+              ${!isValidStoreName ? "border-red-300" : "border-gray-300"} 
+              ${storeName.length > 0 ? "text-opacity-100" : "text-gray-500"}}
+              border-2 border-gray-300   rounded-lg h-10 w-full px-3 text-sm`}
             type="text"
             name="name"
+            value={domainName}
             placeholder="enter your domain name"
           />
-          {/* <select
-          className="border-2 border-gray-300  rounded-lg h-12 w-full px-3 text-sm  "
-          name=""
-        >
-          <option>{option_1}</option>
-          <option>{option_2}</option>
-          <option>{option_3}</option>
-        </select> */}
+          <span className="absolute right-3 top-2 text-gray-500">{suffix}</span>
+          {/* {!isValidDomainName && storeName.length > 0 && (
+            <p className="text-xs text-red-500 mt-2">
+              Store name must be at least 3 characters long
+            </p>
+          )} */}
         </div>
       </label>
 
