@@ -6,6 +6,7 @@ import categoryIcon from "../assets/icons8-category-24.png";
 import currencyIcon from "../assets/icons8-currency-32.png";
 import emailIcon from "../assets/icons8-email-50.png";
 import { useState } from "react";
+import axios from "axios";
 
 function CreateStore() {
   const [storeName, setStoreName] = useState("");
@@ -71,20 +72,32 @@ function CreateStore() {
   };
 
   // Form Submit Handler
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     // Form Data
     const formData = {
       storeName,
-      domainName: `${domainName}${suffix}`,
+      domainName: `${domainName.trim()}${suffix}`,
       location,
       category,
       currency,
       email,
     };
-    console.log(formData);
-    console.log(isFormValid);
+    // console.log(formData);
+    // console.log(isFormValid);
+
+    try {
+      await axios
+        .post(
+          "https://interview-task-green.vercel.app/task/stores/create",
+          formData
+        )
+        .then((response) => console.log("Response Data:", response.data))
+        .catch((error) => console.log("error form post:", error.message));
+    } catch (error) {
+      console.log("Error creating store:", error.message);
+    }
   };
 
   // Form Validity Check
