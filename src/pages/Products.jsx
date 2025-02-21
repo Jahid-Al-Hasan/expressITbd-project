@@ -26,7 +26,7 @@ function Products() {
   }, []);
 
   return (
-    <div className="w-full lg:max-w-[80%] px-2 lg:px-0 lg:px-0 lg:mx-auto ">
+    <div className="w-full lg:max-w-[80%] px-2 lg:px-0 lg:mx-auto ">
       <div className="my-8">
         <h3 className="text-2xl font-bold my-6">Our Products</h3>
         <div className="grid xl:grid-cols-4 lg:grid-cols-3  md:grid-cols-2  gap-4">

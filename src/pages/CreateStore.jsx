@@ -77,14 +77,14 @@ function CreateStore() {
 
     // Form Data
     const formData = {
-      storeName,
-      domainName: `${domainName.trim()}${suffix}`,
-      location,
-      category,
-      currency,
-      email,
+      name: storeName,
+      domain: domainName,
+      country: location,
+      category: category,
+      currency: currency,
+      email: email,
     };
-    // console.log(formData);
+    console.log(formData);
     // console.log(isFormValid);
 
     try {
@@ -93,8 +93,11 @@ function CreateStore() {
           "https://interview-task-green.vercel.app/task/stores/create",
           formData
         )
-        .then((response) => console.log("Response Data:", response.data))
-        .catch((error) => console.log("error form post:", error.message));
+        .then((response) => console.log("Response Data:", response))
+        .catch((error) =>
+          // console.log("error form post:", error.response.data.message),
+          alert(error.response.data.errro[0].message)
+        );
     } catch (error) {
       console.log("Error creating store:", error.message);
     }
@@ -230,11 +233,10 @@ function CreateStore() {
               <select
                 onChange={handleLocation}
                 className="border-2 border-gray-300  rounded-lg h-10 w-full px-3 text-sm  "
-                name=""
               >
                 <option value={"Bangladesh"}>Bangladesh</option>
-                <option value={"Bangladesh"}>Bangladesh</option>
-                <option value={"Bangladesh"}>Bangladesh</option>
+                <option value={"India"}>India</option>
+                <option value={"Pakistan"}>Pakistan</option>
               </select>
             </div>
           </label>
@@ -262,8 +264,8 @@ function CreateStore() {
                 name=""
               >
                 <option value={"Fashion"}>Fashion</option>
-                <option value={"Fashion"}>Fashion</option>
-                <option value={"Fashion"}>Fashion</option>
+                <option value={"Sports"}>Sports</option>
+                <option value={"Grocery"}>Grocery</option>
               </select>
             </div>
           </label>
@@ -289,9 +291,9 @@ function CreateStore() {
                 className="border-2 border-gray-300  rounded-lg h-10 w-full px-3 text-sm  "
                 name=""
               >
-                <option value={"BDT (Taka)"}>BDT (Taka)</option>
-                <option value={"BDT (Taka)"}>BDT (Taka)</option>
-                <option value={"BDT (Taka)"}>BDT (Taka)</option>
+                <option value={"BDT"}>BDT (Taka)</option>
+                <option value={"INR"}>INR (Rupee)</option>
+                <option value={"PKR"}>PKR (Pakistani Rupee)</option>
               </select>
             </div>
           </label>
