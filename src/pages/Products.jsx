@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router";
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -40,15 +41,28 @@ function Products() {
               </div>
               <div className="my-3 mx-1 ">
                 <div className="flex justify-between text-md font-bold opacity-70 whitespace-pre">
-                  <h3>{product.name}</h3>
+                  <Link to={`/product/${product._id}`} state={{ product }}>
+                    <h3>{product.name}</h3>
+                  </Link>
                   <h3>{`Price:  ${product.price} TK`}</h3>
                 </div>
-                <p className="text-sm opacity-50 mt-3 mb-6">
+                <Link to={`/product/${product._id}`} state={{ product }}>
+                  <button className="btn rounded-lg border px-3 py-0.5 my-4 text-xs ">
+                    Details
+                  </button>
+                </Link>
+                <p className="text-sm opacity-50  my-4 mb-6">
                   {product.description}
                 </p>
-                <h3 className="text-md font-bold text-center my-12">
-                  ADD TO CART
-                </h3>
+
+                <div
+                  className="flex
+                justify-center"
+                >
+                  <button className="btn text-xs border rounded-3xl py-1 px-6">
+                    ADD TO CART
+                  </button>
+                </div>
               </div>
             </div>
           ))}
