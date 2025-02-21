@@ -47,7 +47,7 @@ function ProductDetails() {
               <button className="btn">BUY NOW</button>
             </div>
             <br />
-            <hr className="" />
+            <hr />
             <div className="inline-block my-3 p-2 border border-gray-200 text-xs font-bold opacity-50">{`Price:  ${product.price} TK`}</div>
 
             <p className="text-md font-medium opacity-40 my-10 mx-2">
