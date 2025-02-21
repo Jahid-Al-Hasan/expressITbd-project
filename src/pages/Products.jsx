@@ -25,15 +25,34 @@ function Products() {
   }, []);
 
   return (
-    <div className="container lg:max-w-[70%] mx-auto">
-      <div>
-        <h3>Our Products</h3>
-        {products.map((product) => (
-          <div key={product._id}>
-            <img src={product.images[0].optimizeUrl} alt="product-1 image" />
-            <h3>{product.name}</h3>
-          </div>
-        ))}
+    <div className="w-full lg:max-w-[80%] px-4 lg:px-0 lg:mx-auto ">
+      <div className="my-8">
+        <h3 className="text-2xl font-bold my-6">Our Products</h3>
+        <div className="grid xl:grid-cols-4 lg:grid-cols-3  md:grid-cols-2  gap-4">
+          {products.map((product) => (
+            <div key={product._id} className="rounded-md bg-white shadow p-3 ">
+              <div className="rounded-md h-72 ">
+                <img
+                  src={product.images[0]?.optimizeUrl}
+                  alt="products image"
+                  className="rounded-md object-cover h-full w-full "
+                />
+              </div>
+              <div className="my-3 mx-1 ">
+                <div className="flex justify-between text-md font-bold opacity-70 whitespace-pre">
+                  <h3>{product.name}</h3>
+                  <h3>{`Price:  ${product.price} TK`}</h3>
+                </div>
+                <p className="text-sm opacity-50 mt-3 mb-6">
+                  {product.description}
+                </p>
+                <h3 className="text-md font-bold text-center my-12">
+                  ADD TO CART
+                </h3>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
