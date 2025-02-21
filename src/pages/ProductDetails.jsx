@@ -26,7 +26,7 @@ function ProductDetails() {
   };
 
   return (
-    <div className="xl:max-w-[80%] px-4 mx-auto my-6">
+    <div className="xl:max-w-[80%] px-2 md:px-0 mx-auto my-6">
       <h3 className="font-bold text-xl">Product Details</h3>
       <div
         className="grid lg:grid-cols-2 md:grid-cols-1 rounded-xl p-4 shadow bg-white gap-10 my-4
@@ -54,7 +54,7 @@ function ProductDetails() {
               {product.description}
             </p>
 
-            <div className="flex justify-between gap-10">
+            <div className="flex justify-between gap-2">
               <div className="rounded-sm border px-6 py-3">Quantity</div>
 
               <div className="grid grid-cols-3 rounded-sm border px-6 py-3 w-28 gap-2">

@@ -46,7 +46,7 @@ function Header() {
                 </li>
               </ul>
             </div>
-            <NavLink className="btn btn-ghost text-xl">Jahid Store</NavLink>
+            <NavLink className="btn btn-ghost text-xl">Luxe Corner</NavLink>
           </div>
           <div className="navbar-center hidden lg:flex">
             <ul className="menu menu-horizontal px-1">
