@@ -29,7 +29,7 @@ function Products() {
         <div className="grid xl:grid-cols-4 lg:grid-cols-3  md:grid-cols-2  gap-4">
           {products.map((product) => (
             <div key={product._id} className="rounded-md bg-white shadow p-3 ">
-              <div className="rounded-md h-72 ">
+              <div className="h-72 ">
                 <img
                   src={product.images[0]?.optimizeUrl}
                   alt="products image"
