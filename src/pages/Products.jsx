@@ -14,7 +14,6 @@ function Products() {
           console.log("Product not found");
         } else {
           setProducts(response.data.data);
-          console.log(response.data.data[0].images[0].optimizeUrl);
         }
       } catch (error) {
         console.log("Product load error:", error.message);
