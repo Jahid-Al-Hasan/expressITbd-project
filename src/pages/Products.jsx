@@ -7,10 +7,12 @@ function Products() {
 
   // Fetch Data
   useEffect(() => {
+    axios.defaults.withCredentials = true;
     const productData = async () => {
       try {
         const response = await axios.get(
-          "https://glore-bd-backend-node-mongo.vercel.app/api/product"
+          "https://glore-bd-backend-node-mongo.vercel.app/api/product",
+          { withCredentials: true }
         );
         if (!response) {
           console.log("Product not found");
