@@ -9,9 +9,7 @@ function Products() {
   useEffect(() => {
     const productData = async () => {
       try {
-        const response = await axios.get(
-          "https://glore-bd-backend-node-mongo.vercel.app/api/product"
-        );
+        const response = await axios.get("/api/product");
         if (!response) {
           console.log("Product not found");
         } else {
