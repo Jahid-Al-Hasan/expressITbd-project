@@ -1,10 +1,25 @@
 import { useState } from "react";
 import { useLocation } from "react-router";
+import playBtn from "../assets/icons8-play-100.png";
+import pauseBtn from "../assets/icons8-pause-100.png";
 
 function ProductDetails() {
   const { state } = useLocation();
   const [product, setProduct] = useState(state?.product || null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
   const [quantity, setQuantity] = useState(1);
+
+  const ToggleBtn = () => {
+    if (!showVideo) {
+      setShowVideo(true);
+      setIsPlaying(true);
+    }
+  };
+  const handleOnEnded = () => {
+    setIsPlaying(false);
+    setShowVideo(false);
+  };
 
   const handleDecrease = () => {
     setQuantity(() => {
@@ -32,12 +47,31 @@ function ProductDetails() {
         className="grid lg:grid-cols-2 md:grid-cols-1 rounded-xl p-2 md:p-4 shadow bg-white gap-10 my-4
       "
       >
-        <div className="h-full">
-          <img
-            src={product.images[0]?.optimizeUrl}
-            alt="products image"
-            className="rounded-md object-cover  "
-          />
+        <div className="h-full relative">
+          <div
+            onClick={ToggleBtn}
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+          >
+            <img
+              src={isPlaying ? pauseBtn : playBtn}
+              alt={isPlaying ? "Pause button" : "Play button"}
+              className="w-24 md:w-36"
+            />
+          </div>
+          {showVideo ? (
+            <video
+              src={product.video.secure_url}
+              autoPlay
+              onEnded={handleOnEnded}
+              className="rounded-md object-cover h-[100vh] mx-auto"
+            />
+          ) : (
+            <img
+              src={product.images[0]?.optimizeUrl}
+              alt="products image"
+              className="rounded-md object-cover  "
+            />
+          )}
         </div>
         <div className="flex flex-col justify-between">
           <div>

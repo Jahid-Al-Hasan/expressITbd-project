@@ -30,17 +30,18 @@ function Products() {
           {products.map((product) => (
             <div key={product._id} className="rounded-md bg-white shadow p-3 ">
               <div className="h-72 ">
-                <img
-                  src={product.images[0]?.optimizeUrl}
-                  alt="products image"
-                  className="rounded-md object-cover h-full w-full "
-                />
+                <Link to={`/product/${product._id}`} state={{ product }}>
+                  <img
+                    src={product.images[0]?.optimizeUrl}
+                    alt="products image"
+                    className="rounded-md object-cover h-full w-full "
+                  />
+                </Link>
               </div>
               <div className="my-3 mx-1 ">
                 <div className="flex justify-between text-md font-bold opacity-70 whitespace-pre">
-                  <Link to={`/product/${product._id}`} state={{ product }}>
-                    <h3>{product.name}</h3>
-                  </Link>
+                  <h3>{product.name}</h3>
+
                   <h3>{`Price:  ${product.price} TK`}</h3>
                 </div>
                 <Link to={`/product/${product._id}`} state={{ product }}>
